@@ -1,6 +1,7 @@
 -- 2025. 11. 22 by WBOAN
+-- 2026. 04. 24 by WBOAN root wboan_webboard
 --
-- database (webboard) 생성
+-- database (webboard) 생성
 -- 
 CREATE DATABASE IF NOT EXISTS webboard
   DEFAULT CHARACTER SET utf8mb4;          
@@ -14,7 +15,7 @@ CREATE TABLE MemberLevel (                            -- MemberLevel 테이블 �
   level_desc    VARCHAR(200) NULL                        -- 등급설명, NULL 허용
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;    -- transaction, foreign key 지원
 
-SHOW INDEX from MemberLevel; 
+--SHOW INDEX from MemberLevel; 
 
 -- webboard-Member table 생성
 --
@@ -32,7 +33,7 @@ CREATE TABLE Member (
       ON DELETE RESTRICT         -- 부모테이블의 행 삭제하는 경우 자식 테이블에서 참조하는 데이터가 있으면 삭제를 금지
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=1;
 
-SHOW INDEX from Member ; 
+--SHOW INDEX from Member ; 
 
 -- webboard-Board table 생성
 --
@@ -49,7 +50,7 @@ CREATE TABLE Board (
     ON DELETE CASCADE                                   -- 게시글은 회원삭제 시 함께 삭제
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;      -- transaction, foreign key 지원
 
-SHOW INDEX from Board ; 
+--SHOW INDEX from Board ; 
 -- MemberLevel 에 초기 데이터 입력
 --
 INSERT INTO MemberLevel (level_no, level_name, level_desc) VALUES
@@ -58,7 +59,7 @@ INSERT INTO MemberLevel (level_no, level_name, level_desc) VALUES
 (3, 'VIP', '가입 시 VVIP 권한을 가진 회원'),
 (9, '관리자',   '사이트 운영 및 모든 권한을 가진 관리자');
 
-INSERT INTO member (id, passwd, name, level_no, regdate) VALUES
+INSERT INTO Member (id, passwd, name, level_no, regdate) VALUES
 ('admin',   'admin1234',   '관리자', 9, NOW()),
 ('wboan01', 'wboan011234', '홍길동', 1, '2025-08-31'),
 ('wboan02', 'wboan021234', '홍길이', 2, NOW()),
@@ -72,4 +73,4 @@ VALUES (1, '첫 번째 게시글입니다', '게시판 기능 테스트를 위�
 INSERT INTO Board (member_no, title, content)
 VALUES (2, '두 번째 게시글입니다', '두 번째 테스트 글을 등록합니다.');
 
-SELECT * FROM information_schema.TABLES WHERE table_schema='webboard';
+--SELECT * FROM information_schema.TABLES WHERE table_schema='webboard';
