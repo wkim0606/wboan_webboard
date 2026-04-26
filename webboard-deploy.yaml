@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webboard-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: webboard
+  template:
+    metadata:
+      labels:
+        app: webboard
+    spec:
+      containers:
+      - name: webboard
+        image: wboan_webboard:2.0
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 80
